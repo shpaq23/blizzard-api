@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {AuthModule} from './auth/auth.module';
+import {NgProgressModule} from '@ngx-progressbar/core';
+import {NgProgressHttpModule} from '@ngx-progressbar/http';
 
 @NgModule({
   declarations: [
@@ -10,6 +13,9 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
+    NgProgressModule,
+    NgProgressHttpModule,
+    AuthModule,
     AppRoutingModule
   ],
   providers: [],
