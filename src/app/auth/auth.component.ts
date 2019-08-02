@@ -15,7 +15,9 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
     this.authService.authorize()
       .subscribe(data => {
-        this.router.navigate(['/']);
+        console.log(data);
+        this.authService.getMountList(data.access_token)
+          .subscribe(data2 => console.log(data2));
       });
   }
 
