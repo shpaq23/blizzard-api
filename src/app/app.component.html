@@ -1,12 +1,13 @@
 <mat-toolbar color="primary">
-  <span class="first">Blizzard API</span>
+  <span [routerLink]="['']" class="first">Blizzard API</span>
   <div class="menu-buttons">
-    <button mat-button>World Of Warcraft</button>
-    <button mat-button>Diablo</button>
-    <button mat-button>Hearthstone</button>
-    <button mat-button>Starcraft</button>
+    <button [routerLinkActive]="['active']" [routerLink]="['/wow']" mat-button>World Of Warcraft</button>
+    <button [disabled]="true" title="Not yet implemented." mat-button>Diablo</button>
+    <button [disabled]="true" title="Not yet implemented." mat-button>Hearthstone</button>
+    <button [disabled]="true" title="Not yet implemented." mat-button>Starcraft</button>
   </div>
 </mat-toolbar>
-
 <ng-progress [thick]="true"></ng-progress>
-<router-outlet></router-outlet>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

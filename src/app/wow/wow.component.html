@@ -1,1 +1,13 @@
-<p>wow works!</p>
+<div class="side-menu">
+  <button [routerLinkActive]="['active']" [routerLink]="['mounts']" mat-button>Mounts</button>
+  <button [disabled]="true" [routerLink]="['pets']" title="Not yet implemented." mat-button>Pets</button>
+  <button [disabled]="true" [routerLink]="['races']" title="Not yet implemented." mat-button>Playable Races</button>
+  <button [disabled]="true" [routerLink]="['specializations']" title="Not yet implemented." mat-button>Playable Specialization</button>
+  <button [disabled]="true" [routerLink]="['realms']" title="Not yet implemented." mat-button>Realms</button>
+  <button [disabled]="true" [routerLink]="['regions']" title="Not yet implemented." mat-button>Regions</button>
+  <button [disabled]="true" [routerLink]="['titles']" title="Not yet implemented." mat-button>Titles</button>
+  <button [disabled]="true" [routerLink]="['token']" title="Not yet implemented." mat-button>WoW Token</button>
+</div>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

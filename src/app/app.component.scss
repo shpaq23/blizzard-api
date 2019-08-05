@@ -1,10 +1,28 @@
+@import "../sass/mixins";
+
 .first {
   margin-right: 10px;
   font-size: 115%;
   font-weight: bold;
+  outline: none;
+  user-select: none;
+  &:hover {
+    cursor: pointer;
+  }
+  width: 12%;
 }
 button {
-  background-color: darkblue;
-  font-weight: bold;
-  margin: 5px;
+ @include button;
+  width: 24%;
+}
+.menu-buttons {
+  width: 88%;
+}
+.content {
+  width: 100%;
+  float: left;
+  background-color: rgba(83, 129, 255, 0.51);
+}
+.mat-toolbar {
+  background-color: rgba(43, 42, 255, 0.61);
 }

@@ -1,0 +1,21 @@
+@import '../../sass/mixins';
+
+.side-menu {
+  display: inline;
+  float: left;
+  max-width: 300px;
+  width: 26%;
+  padding: 2%;
+}
+.content {
+  display: inline;
+  float: left;
+  padding: 2%;
+}
+button {
+  width: 97%;
+  height: 45px;
+  border-radius: 10px;
+  @include button;
+
+}

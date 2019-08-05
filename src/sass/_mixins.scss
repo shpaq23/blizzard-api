@@ -1,0 +1,18 @@
+@mixin button() {
+  background-color: darkblue;
+  font-weight: bold;
+  margin: 5px;
+  color: aliceblue;
+  &:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+  }
+  &.active {
+    background-color: azure;
+    color: darkblue;
+  }
+  &:hover:not(.active):not(:disabled) {
+    background-color: azure;
+    color: darkblue;
+  }
+}
