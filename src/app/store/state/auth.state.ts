@@ -5,6 +5,8 @@ export interface AuthState {
   error: string;
 }
 export const initialAuthState: AuthState = {
-  auth: JSON.parse(localStorage.getItem('auth')),
+  auth: localStorage.getItem('auth') ?
+    JSON.parse(localStorage.getItem('auth')) :
+    {access_token: null, token_type: null, expires_in: null},
   error: ''
 };

@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../api/services/auth.service';
 import {Router} from '@angular/router';
+import {AuthState} from '../store/state/auth.state';
+import {select, Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import {getError} from '../store/selectors/auth.selectors';
+import {GetToken} from '../store/actions/auth.actions';
 
 @Component({
   selector: 'app-auth',
@@ -9,16 +14,14 @@ import {Router} from '@angular/router';
 })
 export class AuthComponent implements OnInit {
 
+  error$: Observable<string>;
   constructor(private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private authStore: Store<AuthState>) { }
 
   ngOnInit() {
-    this.authService.authorize()
-      .subscribe(data => {
-        console.log(data);
-        this.authService.getMountList(data.access_token)
-          .subscribe(data2 => console.log(data2));
-      });
+    this.error$ = this.authStore.pipe(select(getError));
+    this.authStore.dispatch(new GetToken());
   }
 
 }

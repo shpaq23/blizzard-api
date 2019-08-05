@@ -1,18 +1,8 @@
-import {AuthState, initialAuthState} from '../state/auth.state';
-import {AuthActions, AuthActionsTypes} from '../actions/auth.actions';
+import {ActionReducerMap} from '@ngrx/store';
+import {AppState} from '../state/app.state';
+import {authReducer} from './auth.reducers';
 
-export function authReducer(state = initialAuthState, action: AuthActions): AuthState {
-  switch (action.type) {
-    case AuthActionsTypes.GetTokenSuccess:
-      return {
-        ... state,
-        auth: action.payload,
-        error: ''
-      };
-    case AuthActionsTypes.GetTokenFail:
-      return {
-        ... state,
-        error: action.payload
-      };
-  }
-}
+export const appReducers: ActionReducerMap<AppState> = {
+  auth: authReducer
+
+};

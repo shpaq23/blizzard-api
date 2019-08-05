@@ -7,9 +7,6 @@ export enum AuthActionsTypes {
     GetTokenSuccess = '[Auth] Get Token Success',
     GetTokenFail = '[Auth] Get Token Fail',
 
-    ValidateToken = '[Auth] Validate Token',
-    ValidateTokenSuccess = '[Auth] Validate Token Success',
-    ValidateTokenFail = '[Auth] Validate Token Fail'
 }
 export class GetToken implements Action {
   public readonly type = AuthActionsTypes.GetToken;
@@ -23,17 +20,4 @@ export class GetTokenFail implements Action {
   constructor(public payload: string) {}
 }
 
-export class ValidateToken implements Action {
-  public readonly type = AuthActionsTypes.ValidateToken;
-}
-export class ValidateTokenSuccess implements Action {
-  public readonly type = AuthActionsTypes.ValidateTokenSuccess;
-  constructor(public payload: boolean) {}
-}
-export class ValidateTokenFail implements  Action {
-  public readonly type = AuthActionsTypes.ValidateTokenFail;
-  constructor(public payload: string) {}
-}
-
-export type AuthActions = GetToken | GetTokenSuccess | GetTokenFail |
-  ValidateToken | ValidateTokenSuccess | ValidateTokenFail;
+export type AuthActions = GetToken | GetTokenSuccess | GetTokenFail;
