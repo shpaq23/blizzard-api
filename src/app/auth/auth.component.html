@@ -1,4 +1,7 @@
-<h1>Authorization...</h1>
+<h1 class="error" *ngIf="error$ | async as error; else err">{{error}}</h1>
+<ng-template #err>
+  <h1>Authorization...</h1>
+</ng-template>
 <div class="spinner" *ngIf="spinner$ | async">
   <mat-spinner style="margin:0 auto;"></mat-spinner>
 </div>

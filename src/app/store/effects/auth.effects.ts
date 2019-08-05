@@ -4,7 +4,7 @@ import {Actions, Effect, ofType} from '@ngrx/effects';
 import {Observable} from 'rxjs';
 import {Action} from '@ngrx/store';
 import {AuthActionsTypes, GetTokenFail, GetTokenSuccess} from '../actions/auth.actions';
-import {catchError, map, mergeMap} from 'rxjs/operators';
+import {catchError, delay, map, mergeMap} from 'rxjs/operators';
 import {of} from 'rxjs/internal/observable/of';
 import {Router} from '@angular/router';
 
@@ -18,12 +18,13 @@ export class AuthEffects {
   getToken: Observable<Action> = this.actions$.pipe(
     ofType(AuthActionsTypes.GetToken),
     mergeMap(() => this.authService.authorize().pipe(
+      delay(2000), // TODO: to see spinner comment this line in prod
       map(authResponse => {
         localStorage.setItem('auth', JSON.stringify(authResponse));
         this.router.navigate(['']);
         return new GetTokenSuccess(authResponse);
       }),
-      catchError(err => of(new GetTokenFail(err)))
+      catchError(err => of(new GetTokenFail(err.error.error_description)))
     )));
 
 }

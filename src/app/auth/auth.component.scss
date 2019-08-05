@@ -2,6 +2,9 @@ h1 {
   text-align: center;
   font-size: 250%;
   color: aliceblue;
+  &.error {
+    color: #ff0000;
+  }
 }
 div.spinner {
   margin-bottom: 20px;
