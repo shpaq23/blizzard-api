@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {WowService} from '../../api/services/wow.service';
+import {Observable} from 'rxjs';
+import {select, Store} from '@ngrx/store';
+import {WowState} from '../../store/state/wow.state';
+import {SpinnerState} from '../../store/state/spinner.state';
+import {getError} from '../../store/selectors/auth.selectors';
+import {isSpinnerShowing} from '../../store/selectors/spinner.selectors';
+import {GetMountList} from '../../store/actions/wow.actions';
 
 @Component({
   selector: 'app-mounts',
@@ -8,11 +14,15 @@ import {WowService} from '../../api/services/wow.service';
 })
 export class MountsComponent implements OnInit {
 
-  constructor(private wowService: WowService) { }
+  error$: Observable<string>;
+  spinner$: Observable<boolean>;
+  constructor(private wowStore: Store<WowState>,
+              private spinnerStore: Store<SpinnerState>) { }
 
   ngOnInit() {
-    this.wowService.getMountList()
-      .subscribe(data => console.log(data));
+    this.error$ = this.wowStore.pipe(select(getError));
+    this.spinner$ = this.spinnerStore.pipe(select(isSpinnerShowing));
+    this.wowStore.dispatch(new GetMountList());
   }
 
 }

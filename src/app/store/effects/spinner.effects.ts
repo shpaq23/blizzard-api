@@ -5,13 +5,18 @@ import {Action} from '@ngrx/store';
 import {AuthActionsTypes} from '../actions/auth.actions';
 import {HideSpinner, ShowSpinner} from '../actions/spinner.actions';
 import {map} from 'rxjs/operators';
+import {WowActionsTypes} from '../actions/wow.actions';
 
 const showSpinnerActions = [
   AuthActionsTypes.GetToken,
+  WowActionsTypes.GetMountList,
 ];
 const hideSpinnerActions = [
   AuthActionsTypes.GetTokenSuccess,
   AuthActionsTypes.GetTokenFail,
+
+  WowActionsTypes.GetMountListSuccess,
+  WowActionsTypes.GetMountListFail,
 ];
 
 

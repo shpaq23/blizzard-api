@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../api/services/auth.service';
-import {Router} from '@angular/router';
 import {AuthState} from '../store/state/auth.state';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
@@ -18,9 +16,7 @@ export class AuthComponent implements OnInit {
 
   error$: Observable<string>;
   spinner$: Observable<boolean>;
-  constructor(private authService: AuthService,
-              private router: Router,
-              private authStore: Store<AuthState>,
+  constructor(private authStore: Store<AuthState>,
               private spinnerStore: Store<SpinnerState>) { }
 
   ngOnInit() {
