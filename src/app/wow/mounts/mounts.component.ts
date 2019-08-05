@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {WowService} from '../../api/services/wow.service';
 
 @Component({
   selector: 'app-mounts',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MountsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private wowService: WowService) { }
 
   ngOnInit() {
+    this.wowService.getMountList()
+      .subscribe(data => console.log(data));
   }
 
 }
