@@ -14,6 +14,8 @@ import {environment} from '../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
 import {UnauthorizedInterceptor} from './api/interceptors/unauthorized-interceptor';
 import {WowModule} from './wow/wow.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {_MatMenuDirectivesModule, MatButtonModule, MatMenuModule, MatToolbarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -29,9 +31,14 @@ import {WowModule} from './wow/wow.module';
     EffectsModule.forRoot([]),
     NgProgressModule,
     NgProgressHttpModule,
+    BrowserAnimationsModule,
     AuthModule,
     WowModule,
-    AppRoutingModule
+    AppRoutingModule,
+    _MatMenuDirectivesModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatButtonModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true},
