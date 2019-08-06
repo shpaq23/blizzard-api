@@ -1,10 +1,16 @@
 import {MountList} from '../../api/services/wow.service';
 
 export interface WowState {
-  mounts: MountList[];
-  error: string;
+  mountState: {
+    mounts: MountList[],
+    loaded: boolean
+    error: string;
+  };
 }
 export const initialWowState: WowState = {
-  mounts: [],
-  error: ''
+  mountState: {
+    mounts: [],
+    loaded: false,
+    error: ''
+  },
 };

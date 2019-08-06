@@ -6,13 +6,18 @@ export function wowReducer(state = initialWowState, action: WowActions): WowStat
     case WowActionsTypes.GetMountListSuccess:
       return {
         ... state,
-        mounts: action.payload,
-        error: ''
+        mountState: {... state.mountState,
+          mounts: action.payload,
+          error: '',
+          loaded: true
+        }
       };
     case WowActionsTypes.GetMountListFail:
       return {
         ... state,
-        error: action.payload
+        mountState: {... state.mountState,
+          error: action.payload,
+        }
       };
     default:
       return state;

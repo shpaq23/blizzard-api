@@ -5,5 +5,13 @@ const getWowFeatureState = createFeatureSelector<WowState>('wow');
 
 export const getMountList = createSelector(
   getWowFeatureState,
-  state => state.mounts
+  state => state.mountState.mounts
+);
+export const getError = createSelector(
+  getWowFeatureState,
+  state => state.mountState.error
+);
+export const getLoaded = createSelector(
+  getWowFeatureState,
+  state => state.mountState.loaded
 );

@@ -1,1 +1,14 @@
-<p>mounts works!</p>
+<h1 class="error" *ngIf="error$ | async as error">{{error}}</h1>
+<h1 *ngIf="!loaded">Loading mount list...</h1>
+<div class="spinner" *ngIf="spinner$ | async">
+  <mat-spinner style="margin:0 auto;"></mat-spinner>
+</div>
+<ng-template [ngIf]="loaded">
+  <div class="container left">
+      <app-mounts-list [mountList]="mountList$ | async"></app-mounts-list>
+  </div>
+  <div class="container right">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>
+
