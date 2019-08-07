@@ -7,6 +7,11 @@ export const getMountList = createSelector(
   getWowFeatureState,
   state => state.mountState.mounts
 );
+export const getMount = (id: number) => createSelector(
+  getWowFeatureState,
+  (state) =>
+    state.mountState.mounts.find(mount => mount.id === id) || null
+);
 export const getError = createSelector(
   getWowFeatureState,
   state => state.mountState.error

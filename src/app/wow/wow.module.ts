@@ -14,10 +14,11 @@ import {WowEffects} from '../store/effects/wow.effects';
 import { MountsListComponent } from './mounts-list/mounts-list.component';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {FormsModule} from '@angular/forms';
+import { MountsDetailsComponent } from './mounts-details/mounts-details.component';
 
 
 @NgModule({
-  declarations: [MountsComponent, WowComponent, MountsListComponent],
+  declarations: [MountsComponent, WowComponent, MountsListComponent, MountsDetailsComponent],
   imports: [
     CommonModule,
     StoreModule.forFeature('wow', wowReducer),

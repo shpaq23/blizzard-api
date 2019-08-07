@@ -37,4 +37,8 @@ export class WowService {
     return this.http.get<MountListResponse>(this.apiUrl + '/data/wow/mount/index',
       {params: {namespace: this.namespace, locale: this.locale}});
   }
+  public getMountDetails(url: string): Observable<any> {
+    return this.http.get<any>(url,
+      {params: {locale: this.locale}});
+  }
 }
