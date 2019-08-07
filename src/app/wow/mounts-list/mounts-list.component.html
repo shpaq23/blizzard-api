@@ -20,3 +20,6 @@
   </table>
 </perfect-scrollbar>
 <mat-paginator [pageSizeOptions]="[100]" [hidePageSize]="true" (page)="restartScrollbar()"></mat-paginator>
+<div class="search-bar">
+  <input (keyup)="applyFilter($event)" type="text" maxlength="18" placeholder="Filter">
+</div>

@@ -13,6 +13,7 @@ import {SpinnerEffects} from '../store/effects/spinner.effects';
 import {WowEffects} from '../store/effects/wow.effects';
 import { MountsListComponent } from './mounts-list/mounts-list.component';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
     MatTableModule,
     MatPaginatorModule,
     PerfectScrollbarModule,
+    FormsModule,
   ]
 })
 export class WowModule { }
