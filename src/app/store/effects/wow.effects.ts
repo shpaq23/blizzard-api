@@ -4,7 +4,7 @@ import {MountList, WowService} from '../../api/services/wow.service';
 import {Observable} from 'rxjs';
 import {Action} from '@ngrx/store';
 import {GetMountListFail, GetMountListSuccess, WowActionsTypes} from '../actions/wow.actions';
-import {catchError, delay, map, mergeMap} from 'rxjs/operators';
+import {catchError, map, mergeMap} from 'rxjs/operators';
 import {of} from 'rxjs/internal/observable/of';
 
 @Injectable()
@@ -15,7 +15,6 @@ export class WowEffects {
   getMountList: Observable<Action> = this.actions$.pipe(
     ofType(WowActionsTypes.GetMountList),
     mergeMap(() => this.wowService.getMountList().pipe(
-      delay(2000), // TODO: to see spinner comment this line in prod
       map(mountListResponse => mountListResponse.mounts
             .map(data => ({id: data.id, name: data.name, details: data.key.href}))),
       map((mountList: MountList[]) => (new GetMountListSuccess(mountList))),

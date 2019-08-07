@@ -1,6 +1,5 @@
 :host {
   width: 100%;
-  background-color: red;
   float: left;
 }
 h1 {
@@ -22,11 +21,9 @@ div.spinner {
   &.right {
     float: right;
     margin-left: 1%;
-    background-color: darkred;
   }
   &.left {
     float: left;
     margin-right: 1%;
-    background-color: azure;
   }
 }

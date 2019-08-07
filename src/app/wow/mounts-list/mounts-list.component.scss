@@ -1,3 +1,40 @@
 table {
   width: 100%;
+  & th {
+    padding: 12px 10px;
+    color: aliceblue;
+    font-weight: bold;
+    font-size: 100%;
+    background: #1a1a9c;
+    & .mat-column-id, .mat-column-details {
+      text-align: center;
+    }
+  }
+  & tr:hover td:not(:last-child) {
+    background-color: rgba(127, 194, 239, 0.61);
+  }
+  & td {
+    font-weight: bolder;
+    padding: 0 10px;
+  }
+}
+button {
+  border: 1px solid;
+  width: 100%;
+}
+.mat-column-id {
+  width: 15%;
+}
+.mat-column-details {
+  width: 20%;
+  text-align: center;
+}
+.mat-paginator {
+  border-radius: 10px;
+  color: aliceblue;
+  background: #1a1a9c;
+  margin-top: 10px;
+}
+::ng-deep .ps__rail-y {
+  width: 0 !important;
 }
