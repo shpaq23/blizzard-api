@@ -16,7 +16,7 @@ export const getError = createSelector(
   getWowFeatureState,
   state => state.mountState.error
 );
-export const getMountListLoaded = createSelector(
+export const getLoaded = createSelector(
   getWowFeatureState,
   state => state.mountState.loaded
 );

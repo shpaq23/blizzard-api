@@ -1,1 +1,6 @@
-<p>mounts-details works!</p>
+<div *ngIf="mount$ | async as mount ">
+  <h1>{{mount.name}}</h1>
+  <ng-container *ngIf="mount.details">
+    <p>{{mount.details.description}}</p>
+  </ng-container>
+</div>

@@ -5,7 +5,8 @@ import {HttpClient} from '@angular/common/http';
 export interface MountList {
   id: number;
   name: string;
-  details: string | MountDetails;
+  detailsUrl: string;
+  details: MountDetails;
   loaded: boolean;
   error: string;
 }

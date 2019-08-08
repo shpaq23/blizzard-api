@@ -28,7 +28,7 @@ export class WowEffects {
     ofType(WowActionsTypes.GetMountList),
     mergeMap(() => this.wowService.getMountList().pipe(
       map(mountListResponse => mountListResponse.mounts
-            .map(data => ({id: data.id, name: data.name, details: data.key.href, loaded: false, error: ''}))),
+            .map(data => ({id: data.id, name: data.name, detailsUrl: data.key.href, loaded: false, error: ''}))),
       map((mountList: MountList[]) => (new GetMountListSuccess(mountList))),
       catchError(err => of(new GetMountListFail(err.error.error_description)))
     )));
@@ -39,7 +39,7 @@ export class WowEffects {
     mergeMap(id => this.wowStore.select(getMount(id)).pipe(
       first(),
       filter((mount: MountList) => !mount.loaded),
-      mergeMap((mount: MountList) => this.wowService.getMountDetails(mount.details as string).pipe(
+      mergeMap((mount: MountList) => this.wowService.getMountDetails(mount.detailsUrl).pipe(
         map(mountResponse => ({
           description: mountResponse.description,
           source: mountResponse.source.name,

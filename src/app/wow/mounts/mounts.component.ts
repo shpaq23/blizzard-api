@@ -5,7 +5,7 @@ import {WowState} from '../../store/state/wow.state';
 import {SpinnerState} from '../../store/state/spinner.state';
 import {isSpinnerShowing} from '../../store/selectors/spinner.selectors';
 import {GetMountList} from '../../store/actions/wow.actions';
-import {getMountListLoaded, getMountList, getError} from '../../store/selectors/wow.selectors';
+import {getLoaded, getMountList, getError} from '../../store/selectors/wow.selectors';
 import {MountList} from '../../api/services/wow.service';
 
 @Component({
@@ -28,7 +28,7 @@ export class MountsComponent implements OnInit {
     this.mountList$ = this.wowStore.pipe(select(getMountList));
     this.spinner$ = this.spinnerStore.pipe(select(isSpinnerShowing));
 
-    this.wowStore.select(getMountListLoaded)
+    this.wowStore.select(getLoaded)
       .subscribe(loaded => {
         this.loaded = loaded;
         if (!loaded) {
