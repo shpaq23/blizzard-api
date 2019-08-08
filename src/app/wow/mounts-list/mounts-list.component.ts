@@ -28,6 +28,7 @@ export class MountsListComponent implements OnInit {
   }
   applyFilter(event: KeyboardEvent) {
     const filterValue = (event.target as HTMLInputElement).value;
+    this.scrollbar.directiveRef.scrollToTop();
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
