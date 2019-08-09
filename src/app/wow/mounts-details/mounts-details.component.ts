@@ -39,7 +39,6 @@ export class MountsDetailsComponent implements OnInit {
           this.wowStore.select(getMount(mountId)).pipe(filter(mount => mount.loaded))
             .subscribe(mount => {
               this.mount = mount;
-              console.log(this.mount);
               this.galleryImages = this.mount.details.displays.map(asset => ({url: asset.zoom}));
             });
           this.wowStore.dispatch(new GetMountDetails(mountId));

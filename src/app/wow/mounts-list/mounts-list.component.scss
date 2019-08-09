@@ -25,6 +25,10 @@ button {
 .mat-column-id {
   width: 15%;
 }
+.mat-column-portrait {
+  width: 58px;
+  text-align: center;
+}
 .mat-column-details {
   width: 20%;
   text-align: center;
@@ -67,4 +71,12 @@ perfect-scrollbar {
 }
 ::ng-deep .mat-paginator-range-label {
   font-weight: bold !important;
+}
+img {
+  margin: 4px;
+  border-radius: 5px;
+}
+img.loaded {
+  box-shadow: 0 0 6px 1px #1a4044;
+  background-color: #181818;
 }

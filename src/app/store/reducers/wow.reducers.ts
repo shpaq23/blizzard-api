@@ -22,10 +22,12 @@ export function wowReducer(state = initialWowState, action: WowActions): WowStat
     case WowActionsTypes.GetMountDetailsSuccess:
     case WowActionsTypes.GetMountDetailsFail:
       const index = state.mountState.mounts.findIndex(row => row.id === action.payload.id);
+      const mountStateCopy = [... state.mountState.mounts];
+      mountStateCopy[index] = action.payload;
       return {
         ... state,
         mountState: {... state.mountState,
-          mounts: [... state.mountState.mounts.slice(0, index), action.payload, ... state.mountState.mounts.slice(index)]
+          mounts: [... mountStateCopy]
         }
       };
     default:

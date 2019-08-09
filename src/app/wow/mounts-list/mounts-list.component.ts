@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import {MountList} from '../../api/services/wow.service';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
@@ -8,21 +8,25 @@ import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
   templateUrl: './mounts-list.component.html',
   styleUrls: ['./mounts-list.component.scss']
 })
-export class MountsListComponent implements OnInit {
+export class MountsListComponent implements OnChanges {
 
   @Input() mountList: MountList[];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(PerfectScrollbarComponent, {static: true}) scrollbar: PerfectScrollbarComponent;
+  @ViewChild('input', {static: true}) input: ElementRef;
 
-  columns: string[] = ['id', 'name', 'details'];
+  columns: string[] = ['id', 'name', 'portrait', 'details'];
   dataSource: MatTableDataSource<MountList>;
-
   constructor() { }
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges): void {
     this.dataSource = new MatTableDataSource<MountList>(this.mountList);
     this.dataSource.paginator = this.paginator;
+    if (this.input.nativeElement.value) {
+      this.dataSource.filter = this.input.nativeElement.value.trim().toLowerCase();
+    }
   }
+
   restartScrollbar() {
     this.scrollbar.directiveRef.scrollToTop();
   }
