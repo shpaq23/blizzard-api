@@ -1,6 +1,6 @@
-<div *ngIf="mount$ | async as mount ">
+<div *ngIf="mount">
   <h1>{{mount.name}}</h1>
-  <ng-container *ngIf="mount.details">
-    <p>{{mount.details.description}}</p>
-  </ng-container>
+  <p>{{mount.details.description}}</p>
+  <p>Source: <span>{{mount.details.source}}</span></p>
+  <ngx-image-gallery [images]="galleryImages" [conf]="galleryConfig"></ngx-image-gallery>
 </div>

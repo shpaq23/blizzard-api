@@ -17,14 +17,12 @@ import {WowState} from '../state/wow.state';
 import {getMount} from '../selectors/wow.selectors';
 import {filter} from 'rxjs/internal/operators/filter';
 import {first} from 'rxjs/internal/operators/first';
-import {AuthState} from '../state/auth.state';
 
 @Injectable()
 export class WowEffects {
   constructor(private actions$: Actions,
               private wowService: WowService,
-              private wowStore: Store<WowState>,
-              private authStore: Store<AuthState>) {}
+              private wowStore: Store<WowState>) {}
   @Effect()
   getMountList: Observable<Action> = this.actions$.pipe(
     ofType(WowActionsTypes.GetMountList),
