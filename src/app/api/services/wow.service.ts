@@ -26,7 +26,7 @@ interface MountListResponse {
 }
 
 export interface MountDetails {
-  displays: string[];
+  displays: MountAssets[];
   description: string;
   source: string;
 }
@@ -41,6 +41,23 @@ interface MountDetailsResponse {
     name: string;
     type: string;
   };
+}
+
+interface MountAssetsResponse {
+  _links: {
+    self: {
+      href: string;
+    };
+  };
+  assets: {
+    key: string;
+    value: string;
+  }[];
+}
+export interface MountAssets {
+  portrait: string;
+  rotate: string;
+  zoom: string;
 }
 @Injectable({
   providedIn: 'root'
@@ -60,6 +77,10 @@ export class WowService {
   }
   public getMountDetails(url: string): Observable<MountDetailsResponse> {
     return this.http.get<MountDetailsResponse>(url,
+      {params: {locale: this.locale}});
+  }
+  public getMountAssets(url: string): Observable<MountAssetsResponse> {
+    return this.http.get<MountAssetsResponse>(url,
       {params: {locale: this.locale}});
   }
 }

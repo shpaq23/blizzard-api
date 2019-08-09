@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgxImageGalleryModule } from 'ngx-image-gallery';
 import { WowRoutingModule } from './wow-routing.module';
 import { MountsComponent } from './mounts/mounts.component';
 import { WowComponent } from './wow.component';
@@ -31,6 +31,7 @@ import { MountsDetailsComponent } from './mounts-details/mounts-details.componen
     MatPaginatorModule,
     PerfectScrollbarModule,
     FormsModule,
+    NgxImageGalleryModule
   ]
 })
 export class WowModule { }
