@@ -68,7 +68,7 @@ export class WowEffects {
     ofType(WowActionsTypes.GetPetList),
     mergeMap(() => this.wowService.getPetList().pipe(
       map(response => response.pets
-        .map(pet => ({id: pet.id, name: pet.name, detailsUrl: pet.key.href}))
+        .map(pet => ({id: pet.id, name: pet.name, detailsUrl: pet.key.href, details: null}))
       ),
       map((petList: PetList[]) => (new GetPetListSuccess(petList))),
       catchError(err => of(new GetPetListFail(err.error.error_description)))

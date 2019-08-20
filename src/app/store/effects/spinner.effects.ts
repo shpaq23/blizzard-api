@@ -10,6 +10,7 @@ import {WowActionsTypes} from '../actions/wow.actions';
 const showSpinnerActions = [
   AuthActionsTypes.GetToken,
   WowActionsTypes.GetMountList,
+  WowActionsTypes.GetPetList
 ];
 const hideSpinnerActions = [
   AuthActionsTypes.GetTokenSuccess,
@@ -17,6 +18,8 @@ const hideSpinnerActions = [
 
   WowActionsTypes.GetMountListSuccess,
   WowActionsTypes.GetMountListFail,
+  WowActionsTypes.GetPetListSuccess,
+  WowActionsTypes.GetPetListFail,
 ];
 
 

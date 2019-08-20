@@ -1,0 +1,82 @@
+table {
+  width: 100%;
+  & th {
+    padding: 12px 10px;
+    color: aliceblue;
+    font-weight: bold;
+    font-size: 100%;
+    background: #1a1a9c;
+    & .mat-column-id, .mat-column-details {
+      text-align: center;
+    }
+  }
+  & tr:hover td:not(:last-child) {
+    background-color: rgba(127, 194, 239, 0.61);
+  }
+  & td {
+    font-weight: bolder;
+    padding: 0 10px;
+  }
+}
+button {
+  border: 1px solid;
+  width: 100%;
+}
+.mat-column-id {
+  width: 15%;
+}
+.mat-column-portrait {
+  width: 58px;
+  text-align: center;
+}
+.mat-column-details {
+  width: 20%;
+  text-align: center;
+}
+.mat-paginator {
+  border-radius: 10px;
+  color: aliceblue;
+  background: #1a1a9c;
+  margin-top: 10px;
+  width: 50%;
+  float: right;
+}
+input[type=text] {
+  color: aliceblue;
+  padding: 10px 25px;
+  text-align: center;
+  font-size: 16px;
+  border: 2px solid #f6f6f6;
+  float: left;
+  border-radius: 10px;
+
+  height: 13px;
+  width: 37%;
+  margin-top: 18px;
+  margin-right: 1%;
+
+  background: #1a1a9c;
+  outline: none;
+}
+::ng-deep .ps__rail-y {
+  width: 0 !important;
+}
+perfect-scrollbar {
+  max-height: 600px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px
+}
+::ng-deep .mat-select-value-text, ::ng-deep .mat-option-text {
+  color: aliceblue !important;
+}
+::ng-deep .mat-paginator-range-label {
+  font-weight: bold !important;
+}
+img {
+  margin: 4px;
+  border-radius: 5px;
+}
+img.loaded {
+  box-shadow: 0 0 6px 1px #1a4044;
+  background-color: #181818;
+}

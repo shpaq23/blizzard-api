@@ -64,6 +64,7 @@ export interface PetList {
   id: number;
   name: string;
   detailsUrl: string;
+  details: PetDetails;
 }
 interface PetListResponse {
   _links: {
@@ -79,7 +80,9 @@ interface PetListResponse {
     id: number;
   }[];
 }
-
+export interface PetDetails {
+  id: any;
+}
 @Injectable({
   providedIn: 'root'
 })
