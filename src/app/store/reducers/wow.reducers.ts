@@ -21,7 +21,7 @@ export function wowReducer(state = initialWowState, action: WowActions): WowStat
       };
     case WowActionsTypes.GetMountDetailsSuccess:
     case WowActionsTypes.GetMountDetailsFail:
-      const index = state.mountState.mounts.findIndex(row => row.id === action.payload.id);
+      let index = state.mountState.mounts.findIndex(row => row.id === action.payload.id);
       const mountStateCopy = [... state.mountState.mounts];
       mountStateCopy[index] = action.payload;
       return {
@@ -48,6 +48,9 @@ export function wowReducer(state = initialWowState, action: WowActions): WowStat
           error: action.payload
         }
       };
+    case WowActionsTypes.GetPetDetailsSuccess:
+      index = state.petState.pets.findIndex(pet => pet.id === action.payload.id);
+      const petStateCopy =
     default:
       return state;
   }

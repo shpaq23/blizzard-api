@@ -64,7 +64,9 @@ export interface PetList {
   id: number;
   name: string;
   detailsUrl: string;
-  details: PetDetails;
+  details?: PetDetails;
+  loaded?: boolean;
+  error?: string;
 }
 interface PetListResponse {
   _links: {
@@ -81,7 +83,58 @@ interface PetListResponse {
   }[];
 }
 export interface PetDetails {
-  id: any;
+  id: number;
+  description: string;
+  type: string;
+  display: string;
+  is_capturable: boolean;
+  is_tradable: boolean;
+  is_battlepet: boolean;
+  is_alliance_only: boolean;
+  is_horde_only: boolean;
+  abilities: string[];
+  source: string;
+  icon: string;
+}
+interface PetDetailsResponse {
+  _links: {
+    self: {
+      href: string;
+    };
+  };
+  id: number;
+  name: string;
+  creature_display: {
+    key: {
+      href: string;
+    };
+  };
+  battle_pet_type: {
+    type: string;
+    name: string;
+  };
+  description: string;
+  is_capturable: boolean;
+  is_tradable: boolean;
+  is_battlepet: boolean;
+  is_alliance_only: boolean;
+  is_horde_only: boolean;
+  abilities: {
+    ability: {
+      key: {
+        href: string;
+      };
+      name: string;
+      id: number
+    };
+    slot: number;
+    required_level: number
+  }[];
+  source: {
+    type: string;
+    name: string;
+  };
+  icon: string;
 }
 @Injectable({
   providedIn: 'root'
@@ -110,5 +163,13 @@ export class WowService {
   public getPetList(): Observable<PetListResponse> {
     return this.http.get<PetListResponse>(this.apiUrl + '/data/wow/pet/index',
       {params: {namespace: this.namespace, locale: this.locale}});
+  }
+  public getPetDetails(url: string): Observable<PetDetailsResponse> {
+    return this.http.get<PetDetailsResponse>(url,
+      {params: {locale: this.locale}});
+  }
+  public getPetDisplay(url: string): Observable<string> {
+    return this.http.get<string>(url,
+      {params: {locale: this.locale}});
   }
 }

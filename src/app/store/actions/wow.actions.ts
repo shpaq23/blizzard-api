@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {MountList, PetList} from '../../api/services/wow.service';
+import {MountList, PetDetails, PetList} from '../../api/services/wow.service';
 
 export enum WowActionsTypes {
   GetMountList = '[wow] Get Mount List',
@@ -14,6 +14,9 @@ export enum WowActionsTypes {
   GetPetListSuccess = '[wow] Get Pet List Success',
   GetPetListFail = '[wow] Get Pet List Fail',
 
+  GetPetDetails = '[wow] Get Pet Details',
+  GetPetDetailsSuccess = '[wow] Get Pet Details Success',
+  GetPetDetailsFail = '[wow] Get Pet Details Fail'
 
 }
 // mounts
@@ -52,7 +55,20 @@ export class GetPetListFail implements Action {
   public readonly type = WowActionsTypes.GetPetListFail;
   constructor(public payload: string) {}
 }
+export class GetPetDetails implements Action {
+  public readonly type = WowActionsTypes.GetPetDetails;
+  constructor(public payload: number) {}
+}
+export class GetPetDetailsSuccess implements Action {
+  public readonly type = WowActionsTypes.GetPetDetailsSuccess;
+  constructor(public payload: PetDetails) {}
+}
+export class GetPetDetailsFail implements Action {
+  public readonly type = WowActionsTypes.GetPetDetailsFail;
+  constructor(public payload: string) {}
+}
 
 export type WowActions = GetMountList | GetMountListSuccess | GetMountListFail
   | GetMountDetails | GetMountDetailsSuccess | GetMountDetailsFail
-  | GetPetList | GetPetListSuccess | GetPetListFail;
+  | GetPetList | GetPetListSuccess | GetPetListFail
+  | GetPetDetails | GetPetDetailsSuccess | GetPetDetailsFail;
