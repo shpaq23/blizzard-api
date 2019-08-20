@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 
+// mounts
 export interface MountList {
   id: number;
   name: string;
@@ -24,7 +25,6 @@ interface MountListResponse {
     };
   };
 }
-
 export interface MountDetails {
   displays: MountAssets[];
   description: string;
@@ -42,7 +42,6 @@ interface MountDetailsResponse {
     type: string;
   };
 }
-
 interface MountAssetsResponse {
   _links: {
     self: {
@@ -59,6 +58,28 @@ export interface MountAssets {
   rotate: string;
   zoom: string;
 }
+
+// pets
+export interface PetList {
+  id: number;
+  name: string;
+  detailsUrl: string;
+}
+interface PetListResponse {
+  _links: {
+    self: {
+      href: string;
+    };
+  };
+  pets: {
+    key: {
+      href: string;
+    };
+    name: string;
+    id: number;
+  }[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -82,5 +103,9 @@ export class WowService {
   public getMountAssets(url: string): Observable<MountAssetsResponse> {
     return this.http.get<MountAssetsResponse>(url,
       {params: {locale: this.locale}});
+  }
+  public getPetList(): Observable<PetListResponse> {
+    return this.http.get<PetListResponse>(this.apiUrl + '/data/wow/pet/index',
+      {params: {namespace: this.namespace, locale: this.locale}});
   }
 }

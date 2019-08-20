@@ -15,10 +15,14 @@ import { MountsListComponent } from './mounts-list/mounts-list.component';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {FormsModule} from '@angular/forms';
 import { MountsDetailsComponent } from './mounts-details/mounts-details.component';
+import { PetsComponent } from './pets/pets.component';
+import { PetsListComponent } from './pets-list/pets-list.component';
+import { PetsDetailsComponent } from './pets-details/pets-details.component';
 
 
 @NgModule({
-  declarations: [MountsComponent, WowComponent, MountsListComponent, MountsDetailsComponent],
+  declarations: [MountsComponent, WowComponent, MountsListComponent,
+    MountsDetailsComponent, PetsComponent, PetsListComponent, PetsDetailsComponent],
   imports: [
     CommonModule,
     StoreModule.forFeature('wow', wowReducer),

@@ -1,9 +1,14 @@
-import {MountList} from '../../api/services/wow.service';
+import {MountList, PetList} from '../../api/services/wow.service';
 
 export interface WowState {
   mountState: {
     mounts: MountList[],
     loaded: boolean
+    error: string;
+  };
+  petState: {
+    pets: PetList[],
+    loaded: boolean;
     error: string;
   };
 }
@@ -13,4 +18,9 @@ export const initialWowState: WowState = {
     loaded: false,
     error: ''
   },
+  petState: {
+    pets: [],
+    loaded: false,
+    error: ''
+  }
 };

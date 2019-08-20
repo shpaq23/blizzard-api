@@ -30,6 +30,24 @@ export function wowReducer(state = initialWowState, action: WowActions): WowStat
           mounts: [... mountStateCopy]
         }
       };
+    case WowActionsTypes.GetPetListSuccess:
+      return {
+        ...state,
+        petState: {
+         ...state.petState,
+          pets: action.payload,
+          error: '',
+          loaded: true
+        }
+      };
+    case WowActionsTypes.GetPetListFail:
+      return  {
+        ...state,
+        petState: {
+          ...state.petState,
+          error: action.payload
+        }
+      };
     default:
       return state;
   }

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {MountAssets, MountDetails, MountList, WowService} from '../../api/services/wow.service';
+import {MountAssets, MountDetails, MountList, PetList, WowService} from '../../api/services/wow.service';
 import {forkJoin, Observable, throwError} from 'rxjs';
 import {Action, Store} from '@ngrx/store';
 import {
@@ -8,7 +8,7 @@ import {
   GetMountDetailsFail,
   GetMountDetailsSuccess,
   GetMountListFail,
-  GetMountListSuccess,
+  GetMountListSuccess, GetPetListFail, GetPetListSuccess,
   WowActionsTypes
 } from '../actions/wow.actions';
 import {catchError, map, mergeMap} from 'rxjs/operators';
@@ -63,4 +63,14 @@ export class WowEffects {
     )),
     map((mount: MountList) => mount.error ? (new GetMountDetailsFail(mount)) : (new GetMountDetailsSuccess(mount))),
   );
+  @Effect()
+  getPetList: Observable<Action> = this.actions$.pipe(
+    ofType(WowActionsTypes.GetPetList),
+    mergeMap(() => this.wowService.getPetList().pipe(
+      map(response => response.pets
+        .map(pet => ({id: pet.id, name: pet.name, detailsUrl: pet.key.href}))
+      ),
+      map((petList: PetList[]) => (new GetPetListSuccess(petList))),
+      catchError(err => of(new GetPetListFail(err.error.error_description)))
+    )));
 }
