@@ -171,4 +171,7 @@ export class WowService {
     return this.http.get<{assets: {key: string, value: string}[]}>(url,
       {params: {locale: this.locale}});
   }
+  public getPetAbility(url: string): Observable<any> {
+    return this.http.get(url);
+  }
 }
