@@ -20,16 +20,18 @@ export function wowReducer(state = initialWowState, action: WowActions): WowStat
         }
       };
     case WowActionsTypes.GetMountDetailsSuccess:
-    case WowActionsTypes.GetMountDetailsFail:
-      let index = state.mountState.mounts.findIndex(row => row.id === action.payload.id);
-      const mountStateCopy = [... state.mountState.mounts];
+    case WowActionsTypes.GetMountDetailsFail: {
+      const index = state.mountState.mounts.findIndex(row => row.id === action.payload.id);
+      const mountStateCopy = [...state.mountState.mounts];
       mountStateCopy[index] = action.payload;
       return {
-        ... state,
-        mountState: {... state.mountState,
-          mounts: [... mountStateCopy]
+        ...state,
+        mountState: {
+          ...state.mountState,
+          mounts: [...mountStateCopy]
         }
       };
+    }
     case WowActionsTypes.GetPetListSuccess:
       return {
         ...state,
@@ -48,9 +50,32 @@ export function wowReducer(state = initialWowState, action: WowActions): WowStat
           error: action.payload
         }
       };
-    case WowActionsTypes.GetPetDetailsSuccess:
-      index = state.petState.pets.findIndex(pet => pet.id === action.payload.id);
-      const petStateCopy =
+    case WowActionsTypes.GetPetDetailsSuccess: {
+      const index = state.petState.pets.findIndex(pet => pet.id === action.payload.id);
+      const petStateCopy = [...state.petState.pets];
+      petStateCopy[index].details = {...action.payload.petDetails};
+      petStateCopy[index].error = '';
+      petStateCopy[index].loaded = true;
+      return {
+        ...state,
+        petState: {
+          ...state.petState,
+          pets: [...petStateCopy]
+        }
+      };
+    }
+    case WowActionsTypes.GetPetDetailsFail: {
+      const index = state.petState.pets.findIndex(pet => pet.id === action.payload.id);
+      const petStateCopy = [...state.petState.pets];
+      petStateCopy[index].error = action.payload.error;
+      return {
+        ...state,
+        petState: {
+          ...state.petState,
+          pets: [...petStateCopy]
+        }
+      };
+    }
     default:
       return state;
   }

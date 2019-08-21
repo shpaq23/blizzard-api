@@ -11,7 +11,7 @@
     <ng-container matColumnDef="portrait">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <img class="loaded" *ngIf="element.details" [src]="element.details.displays[0].portrait" height="56px" width="56px" [alt]="element.name">
+        <img class="loaded" *ngIf="element.details" [src]="element.details.icon" height="56px" width="56px" [alt]="element.name">
         <img *ngIf="!element.details" [src]="'./assets/unknown.jpg'" height="56px">
       </td>
     </ng-container>

@@ -34,3 +34,8 @@ export const getPetListLoaded = createSelector(
   getWowFeatureState,
   state => state.petState.loaded
 );
+export const getPet = (id: number) => createSelector(
+  getWowFeatureState,
+  (state) =>
+    state.petState.pets.find(pet => pet.id === id) || null
+);

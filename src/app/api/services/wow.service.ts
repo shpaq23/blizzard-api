@@ -83,16 +83,15 @@ interface PetListResponse {
   }[];
 }
 export interface PetDetails {
-  id: number;
   description: string;
   type: string;
   display: string;
-  is_capturable: boolean;
-  is_tradable: boolean;
-  is_battlepet: boolean;
-  is_alliance_only: boolean;
-  is_horde_only: boolean;
-  abilities: string[];
+  isCapturable: boolean;
+  isTradable: boolean;
+  isBattlePet: boolean;
+  isAllianceOnly: boolean;
+  isHordeOnly: boolean;
+  abilities: any[];
   source: string;
   icon: string;
 }
@@ -168,8 +167,8 @@ export class WowService {
     return this.http.get<PetDetailsResponse>(url,
       {params: {locale: this.locale}});
   }
-  public getPetDisplay(url: string): Observable<string> {
-    return this.http.get<string>(url,
+  public getPetDisplay(url: string): Observable<{assets: {key: string, value: string}[]}> {
+    return this.http.get<{assets: {key: string, value: string}[]}>(url,
       {params: {locale: this.locale}});
   }
 }

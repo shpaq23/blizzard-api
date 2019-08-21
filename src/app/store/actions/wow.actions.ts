@@ -61,11 +61,11 @@ export class GetPetDetails implements Action {
 }
 export class GetPetDetailsSuccess implements Action {
   public readonly type = WowActionsTypes.GetPetDetailsSuccess;
-  constructor(public payload: PetDetails) {}
+  constructor(public payload: {id: number, petDetails: PetDetails}) {}
 }
 export class GetPetDetailsFail implements Action {
   public readonly type = WowActionsTypes.GetPetDetailsFail;
-  constructor(public payload: string) {}
+  constructor(public payload: {id: number, error: string}) {}
 }
 
 export type WowActions = GetMountList | GetMountListSuccess | GetMountListFail
