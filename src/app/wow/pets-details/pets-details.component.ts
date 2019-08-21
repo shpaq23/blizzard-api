@@ -5,7 +5,7 @@ import {Store} from '@ngrx/store';
 import {ActivatedRoute} from '@angular/router';
 import {GALLERY_CONF, GALLERY_IMAGE} from 'ngx-image-gallery';
 import {getPet} from '../../store/selectors/wow.selectors';
-import {filter} from 'rxjs/operators';
+import {filter, tap} from 'rxjs/operators';
 import {GetPetDetails} from '../../store/actions/wow.actions';
 
 @Component({
@@ -38,7 +38,6 @@ export class PetsDetailsComponent implements OnInit {
           this.wowStore.select(getPet(petId)).pipe(filter(pet => pet.loaded))
             .subscribe(pet => {
               this.pet = pet;
-              console.log(this.pet);
               this.galleryImages = [{url: this.pet.details.display}];
             });
           this.wowStore.dispatch(new GetPetDetails(petId));

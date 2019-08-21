@@ -23,7 +23,9 @@ export function wowReducer(state = initialWowState, action: WowActions): WowStat
     case WowActionsTypes.GetMountDetailsFail: {
       const index = state.mountState.mounts.findIndex(row => row.id === action.payload.id);
       const mountStateCopy = [...state.mountState.mounts];
+      console.log(state.mountState.mounts[index] === mountStateCopy[index]);
       mountStateCopy[index] = action.payload;
+      console.log(state.mountState.mounts[index] === mountStateCopy[index]);
       return {
         ...state,
         mountState: {
@@ -52,27 +54,33 @@ export function wowReducer(state = initialWowState, action: WowActions): WowStat
       };
     case WowActionsTypes.GetPetDetailsSuccess: {
       const index = state.petState.pets.findIndex(pet => pet.id === action.payload.id);
-      const petStateCopy = [...state.petState.pets];
-      petStateCopy[index].details = {...action.payload.petDetails};
-      petStateCopy[index].error = '';
-      petStateCopy[index].loaded = true;
+      const petsStateCopy = [...state.petState.pets];
+      petsStateCopy[index] = {
+        ...state.petState.pets[index],
+        details: action.payload.petDetails,
+        error: '',
+        loaded: true,
+      };
       return {
         ...state,
         petState: {
           ...state.petState,
-          pets: [...petStateCopy]
+          pets: petsStateCopy
         }
       };
     }
     case WowActionsTypes.GetPetDetailsFail: {
       const index = state.petState.pets.findIndex(pet => pet.id === action.payload.id);
-      const petStateCopy = [...state.petState.pets];
-      petStateCopy[index].error = action.payload.error;
+      const petsStateCopy = [...state.petState.pets];
+      petsStateCopy[index] = {
+        ...state.petState.pets[index],
+        error: action.payload.error,
+      };
       return {
         ...state,
         petState: {
           ...state.petState,
-          pets: [...petStateCopy]
+          pets: [...petsStateCopy]
         }
       };
     }

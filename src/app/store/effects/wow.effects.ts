@@ -60,8 +60,8 @@ export class WowEffects {
         map((mountDetails: MountDetails) => ({... mount, details: mountDetails, loaded: true, error: ''})),
         catchError(err => of({... mount, loaded: false, error: err.error.error_description || err.statusText}))
       )),
+      map((mount: MountList) => mount.error ? (new GetMountDetailsFail(mount)) : (new GetMountDetailsSuccess(mount))),
     )),
-    map((mount: MountList) => mount.error ? (new GetMountDetailsFail(mount)) : (new GetMountDetailsSuccess(mount))),
   );
   @Effect()
   getPetList: Observable<Action> = this.actions$.pipe(
@@ -84,16 +84,15 @@ export class WowEffects {
         map(resp => ({description: resp.description, type: resp.battle_pet_type.name, display: resp.creature_display.key.href,
           isCapturable: resp.is_capturable, isTradable: resp.is_tradable, isBattlePet: resp.is_battlepet,
           isAllianceOnly: resp.is_alliance_only, isHordeOnly: resp.is_horde_only, abilities: resp.abilities,
-          source: resp.source.name, icon: resp.icon})),
+          source: resp.source ? resp.source.name : 'unknown', icon: resp.icon})),
         catchError(err => throwError({id, error: err}))
       )),
       mergeMap((pet: PetDetails) => this.wowService.getPetDisplay(pet.display).pipe(
         map(image => ({...pet, display: image.assets[2].value})),
         catchError(err => throwError({id, error: err}))
       )),
-      map(pet => ({id, petDetails: pet}))
+      map(pet => (new GetPetDetailsSuccess({id, petDetails: pet}))),
+      catchError(err => of(new GetPetDetailsFail({id, error: err})))
     )),
-    map(pet => (new GetPetDetailsSuccess(pet))),
-    catchError(err => of(new GetPetDetailsFail(err)))
   );
 }
