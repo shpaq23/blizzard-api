@@ -16,9 +16,15 @@ import {GetPetDetails} from '../../store/actions/wow.actions';
 export class PetsDetailsComponent implements OnInit {
 
   pet: PetList;
+  availableSources = ['Available', 'Drop', 'Pet Battle', 'Pet Store', 'Profession',
+  'Promotion', 'PvP', 'Quest', 'Raid Drop', 'Trading Card Game', 'Vendor', 'World Event'];
+  availableTypes = ['Aquatic', 'Beast', 'Critter', 'Dragonkin', 'Elemental', 'Flying',
+  'Humanoid', 'Magic', 'Mechanical', 'Undead'];
+  availableOthers = ['isCapturable', 'isTradable', 'isBattlePet', 'isAllianceOnly', 'isHordeOnly'];
+
   constructor(private wowStore: Store<WowState>,
               private activatedRoute: ActivatedRoute,
-              private wowService: WowService) { }
+              private wowService: WowService) {}
   galleryImages: GALLERY_IMAGE[];
   galleryConfig: GALLERY_CONF = {
     imageOffset: '0px',
