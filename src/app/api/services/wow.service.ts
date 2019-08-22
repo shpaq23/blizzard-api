@@ -135,6 +135,21 @@ interface PetDetailsResponse {
   };
   icon: string;
 }
+
+
+export interface RealmList {
+  type: string;
+  population: string;
+  queue: boolean;
+  status: boolean;
+  name: string;
+  slug: string;
+  battlegroup: string;
+  locale: string;
+  timezone: string;
+  connected_realms: string[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -173,5 +188,13 @@ export class WowService {
   }
   public getPetAbility(url: string): Observable<any> {
     return this.http.get(url);
+  }
+  public characterExist(realm: string, name: string): Observable<boolean> {
+    return this.http.get<boolean>(this.apiUrl + `/wow/character/${realm}/${name}`,
+      {params: {locale: this.locale}});
+  }
+  public getRealmList(): Observable<RealmList[]> {
+    return this.http.get<RealmList[]>(this.apiUrl + '/wow/realm/status',
+      {params: {locale: this.locale}});
   }
 }
