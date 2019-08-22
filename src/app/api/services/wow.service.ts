@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 
 // mounts
 export interface MountList {
@@ -191,10 +192,11 @@ export class WowService {
   }
   public characterExist(realm: string, name: string): Observable<boolean> {
     return this.http.get<boolean>(this.apiUrl + `/wow/character/${realm}/${name}`,
-      {params: {locale: this.locale}});
+      {params: {locale: this.locale}, observe: 'response'}).pipe(
+        map(response => response.ok));
   }
   public getRealmList(): Observable<RealmList[]> {
-    return this.http.get<RealmList[]>(this.apiUrl + '/wow/realm/status',
-      {params: {locale: this.locale}});
+    return this.http.get<{realms: RealmList[]}>(this.apiUrl + '/wow/realm/status',
+      {params: {locale: this.locale}}).pipe(map(realm => realm.realms));
   }
 }

@@ -4,7 +4,15 @@ import { NgxImageGalleryModule } from 'ngx-image-gallery';
 import { WowRoutingModule } from './wow-routing.module';
 import { MountsComponent } from './mounts/mounts.component';
 import { WowComponent } from './wow.component';
-import {MatButtonModule, MatPaginatorModule, MatProgressSpinnerModule, MatTableModule} from '@angular/material';
+import {
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
+  MatTableModule
+} from '@angular/material';
 import {StoreModule} from '@ngrx/store';
 import {wowReducer} from '../store/reducers/wow.reducers';
 import {spinnerReducer} from '../store/reducers/spinner.reducers';
@@ -13,16 +21,20 @@ import {SpinnerEffects} from '../store/effects/spinner.effects';
 import {WowEffects} from '../store/effects/wow.effects';
 import { MountsListComponent } from './mounts-list/mounts-list.component';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MountsDetailsComponent } from './mounts-details/mounts-details.component';
 import { PetsComponent } from './pets/pets.component';
 import { PetsListComponent } from './pets-list/pets-list.component';
 import { PetsDetailsComponent } from './pets-details/pets-details.component';
+import { CharacterComponent } from './character/character.component';
 
 
 @NgModule({
   declarations: [MountsComponent, WowComponent, MountsListComponent,
-    MountsDetailsComponent, PetsComponent, PetsListComponent, PetsDetailsComponent],
+    MountsDetailsComponent, PetsComponent, PetsListComponent, PetsDetailsComponent, CharacterComponent],
+  exports: [
+    CharacterComponent
+  ],
   imports: [
     CommonModule,
     StoreModule.forFeature('wow', wowReducer),
@@ -35,7 +47,11 @@ import { PetsDetailsComponent } from './pets-details/pets-details.component';
     MatPaginatorModule,
     PerfectScrollbarModule,
     FormsModule,
-    NgxImageGalleryModule
+    NgxImageGalleryModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule
   ]
 })
 export class WowModule { }

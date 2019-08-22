@@ -6,7 +6,7 @@
   font-weight: bold;
   outline: none;
   user-select: none;
-  &:hover {
+  &:hover:not(.no-hover) {
     cursor: pointer;
   }
   width: 12%;
@@ -25,4 +25,9 @@ button {
 }
 .mat-toolbar {
   background-color: rgba(43, 42, 255, 0.61);
+}
+.character {
+  width: 80%;
+  margin: 5px auto;
+  border-radius: 10px;
 }

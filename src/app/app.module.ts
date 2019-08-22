@@ -13,7 +13,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {UnauthorizedInterceptor} from './api/interceptors/unauthorized-interceptor';
 import {WowModule} from './wow/wow.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {_MatMenuDirectivesModule, MatButtonModule, MatMenuModule, MatToolbarModule} from '@angular/material';
+import {_MatMenuDirectivesModule, MatButtonModule, MatFormFieldModule, MatMenuModule, MatToolbarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,8 @@ import {_MatMenuDirectivesModule, MatButtonModule, MatMenuModule, MatToolbarModu
     _MatMenuDirectivesModule,
     MatMenuModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true},
