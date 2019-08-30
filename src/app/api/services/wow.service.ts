@@ -8,11 +8,11 @@ export interface MountList {
   id: number;
   name: string;
   detailsUrl: string;
-  details: MountDetails;
+  details?: MountDetails;
   loaded: boolean;
   error: string;
 }
-interface MountListResponse {
+export interface MountListResponse {
   mounts: {
     id: number;
     key: {
@@ -31,7 +31,7 @@ export interface MountDetails {
   description: string;
   source: string;
 }
-interface MountDetailsResponse {
+export interface MountDetailsResponse {
   creature_displays: {
     key: {
       href: string;
@@ -43,7 +43,7 @@ interface MountDetailsResponse {
     type: string;
   };
 }
-interface MountAssetsResponse {
+export interface MountAssetsResponse {
   _links: {
     self: {
       href: string;
@@ -69,7 +69,7 @@ export interface PetList {
   loaded?: boolean;
   error?: string;
 }
-interface PetListResponse {
+export interface PetListResponse {
   _links: {
     self: {
       href: string;

@@ -12,7 +12,17 @@ export function authReducer(state = initialAuthState, action: AuthActions): Auth
     case AuthActionsTypes.GetTokenFail:
       return {
         ... state,
-        error: action.payload
+        error: action.payload,
+      };
+    case AuthActionsTypes.StartSpinner:
+      return {
+        ... state,
+        loading: true
+      };
+    case AuthActionsTypes.StopSpinner:
+      return {
+        ... state,
+        loading: false
       };
     default:
       return state;

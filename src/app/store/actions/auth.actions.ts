@@ -7,6 +7,9 @@ export enum AuthActionsTypes {
     GetTokenSuccess = '[Auth] Get Token Success',
     GetTokenFail = '[Auth] Get Token Fail',
 
+    StartSpinner = '[Auth] Show Spinner',
+    StopSpinner = '[Auth] Hide Spinner'
+
 }
 export class GetToken implements Action {
   public readonly type = AuthActionsTypes.GetToken;
@@ -19,5 +22,12 @@ export class GetTokenFail implements Action {
   public readonly type = AuthActionsTypes.GetTokenFail;
   constructor(public payload: string) {}
 }
+export class StartSpinner implements Action {
+  public readonly type = AuthActionsTypes.StartSpinner;
+}
+export class StopSpinner implements Action {
+  public readonly type = AuthActionsTypes.StopSpinner;
+}
 
-export type AuthActions = GetToken | GetTokenSuccess | GetTokenFail;
+export type AuthActions = GetToken | GetTokenSuccess | GetTokenFail
+  | StartSpinner | StopSpinner;

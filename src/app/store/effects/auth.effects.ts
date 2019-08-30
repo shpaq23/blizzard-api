@@ -3,8 +3,8 @@ import {AuthService} from '../../api/services/auth.service';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {Observable} from 'rxjs';
 import {Action} from '@ngrx/store';
-import {AuthActionsTypes, GetTokenFail, GetTokenSuccess} from '../actions/auth.actions';
-import {catchError, delay, map, mergeMap} from 'rxjs/operators';
+import {AuthActionsTypes, GetTokenFail, GetTokenSuccess, StartSpinner, StopSpinner} from '../actions/auth.actions';
+import {catchError, map, mergeMap} from 'rxjs/operators';
 import {of} from 'rxjs/internal/observable/of';
 import {Router} from '@angular/router';
 
@@ -18,13 +18,21 @@ export class AuthEffects {
   getToken: Observable<Action> = this.actions$.pipe(
     ofType(AuthActionsTypes.GetToken),
     mergeMap(() => this.authService.authorize().pipe(
-      delay(2000), // TODO: to see spinner comment this line in prod
       map(authResponse => {
         localStorage.setItem('auth', JSON.stringify(authResponse));
         this.router.navigate(['']);
         return new GetTokenSuccess(authResponse);
       }),
-      catchError(err => of(new GetTokenFail(err.error.error_description)))
+      catchError(err => of(new GetTokenFail(err)))
     )));
-
+    @Effect()
+    showSpinner: Observable<Action> = this.actions$.pipe(
+      ofType(AuthActionsTypes.GetToken),
+      map(() => new StartSpinner())
+    );
+    @Effect()
+    hideSpinner: Observable<Action> = this.actions$.pipe(
+      ofType(AuthActionsTypes.GetTokenFail, AuthActionsTypes.GetTokenSuccess),
+      map(() => new StopSpinner())
+    );
 }

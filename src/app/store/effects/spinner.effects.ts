@@ -8,13 +8,13 @@ import {map} from 'rxjs/operators';
 import {WowActionsTypes} from '../actions/wow.actions';
 
 const showSpinnerActions = [
-  AuthActionsTypes.GetToken,
+  // AuthActionsTypes.GetToken,
   WowActionsTypes.GetMountList,
   WowActionsTypes.GetPetList
 ];
 const hideSpinnerActions = [
-  AuthActionsTypes.GetTokenSuccess,
-  AuthActionsTypes.GetTokenFail,
+  // AuthActionsTypes.GetTokenSuccess,
+  // AuthActionsTypes.GetTokenFail,
 
   WowActionsTypes.GetMountListSuccess,
   WowActionsTypes.GetMountListFail,

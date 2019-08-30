@@ -11,3 +11,7 @@ export const getError = createSelector(
   getAuthFeatureState,
   state => state.error
 );
+export const getLoading = createSelector(
+  getAuthFeatureState,
+  state => state.loading
+);

@@ -30,7 +30,7 @@ export class WowEffects {
       map(mountListResponse => mountListResponse.mounts
             .map(data => ({id: data.id, name: data.name, detailsUrl: data.key.href, loaded: false, error: ''}))),
       map((mountList: MountList[]) => (new GetMountListSuccess(mountList))),
-      catchError(err => of(new GetMountListFail(err.error.error_description)))
+      catchError(err => of(new GetMountListFail(err)))
     )));
   @Effect()
   getMountDetails: Observable<Action> = this.actions$.pipe(
